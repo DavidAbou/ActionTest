@@ -12,41 +12,24 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  test:
+  # This workflow contains a single job called "build"
+  check_repository_cleanliness:
+    # The type of runner that the job will run on
+    name: Unwanted file detected
     runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v2
-      - id: run-script
-        uses: ./
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          result-encoding: string
-          script: |
-            const crypto = require('crypto')
-            const {promisify} = require('util')
-            const randomBytes = promisify(crypto.randomBytes)
-            const repo = await github.repos.get({
-              owner: 'actions',
-              repo: 'github-script'
-            })
-            console.log('repo.url', repo.url)
-            console.log('context.eventName', context.eventName)
-            console.log('input.result-encoding', actions.core.getInput('result-encoding'))
-            const bytes = await randomBytes(16)
-            return bytes.toString('hex')
-      - uses: ./
-        name: Invalid token
-        continue-on-error: true
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            #
-      - uses: ./
-        name: Throw error
-        continue-on-error: true
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            throw new Error('Whoops!')
-      - run: |
-          echo OUTPUT: ${{steps.run-script.outputs.result}}
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: |
+          find ./ ! -path "./.git/**" -type f -printf "%f\n"
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
