@@ -56,8 +56,6 @@ jobs:
           if [[ ERROR -eq 1 ]]; then
             echo "::error file=Dockerfile,line=1,col=5,endColumn=7::Missing semicolon";
             exit 1;
-          else
-            echo "::error title="Checks if the repository is clean and void of any unwanted files (temp files, binary files, etc.)"::Repository clean";
           fi
             
 
