@@ -54,7 +54,7 @@ jobs:
           done
           
           if [[ ERROR -eq 1 ]]; then
-            echo "::error title=Checks if the repository is clean and void of any unwanted files";
+            echo "::error title=Checks if the repository is clean and void of any unwanted files::Process completed with exit code 1";
           fi
             
 
