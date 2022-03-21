@@ -55,7 +55,6 @@ jobs:
           
           if [[ ERROR -eq 1 ]]; then
             echo "::error file=Dockerfile,line=1,col=5,endColumn=7::Missing semicolon";
-            exit 1;
           fi
             
 
