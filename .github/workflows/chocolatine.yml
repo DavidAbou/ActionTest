@@ -25,10 +25,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
-          search_dir="."
-          for file in "$searchdir"/*
+          for i in $(find ! -path "./.git/**" -name \* ! -name ".git" -type f);
           do
-            echo "::error file=${file},title=Unwanted file detected::${file}"
+            echo "::error file=${i:2},title=Unwanted file detected::${i:2}"
           done
 
       # Runs a set of commands using the runners shell
