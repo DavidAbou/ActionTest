@@ -54,7 +54,7 @@ jobs:
           done
           
           if [[ ERROR -eq 1 ]]; then
-            echo "::error file=lol,title=lol";
+            echo "::error file=lol,title=lol::";
             exit 1;
           else
             echo "::notice title="Checks if the repository is clean and void of any unwanted files (temp files, binary files, etc.)"::Repository clean";
