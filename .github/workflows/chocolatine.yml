@@ -25,16 +25,21 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
+          ERROR=0;
           for i in $(find ! -path "./.git/**" -name \* ! -name ".git" -type f);
           do
             if [[ "$(basename -- "$i")" =~ ^(#).*(#)$ ]]; then
               echo "::error file=${i:2},title=Unwanted file detected::${i:2}";
+              ERROR=1;
             elif [[ "$(basename -- "$i")" =~ .*~ ]]; then
               echo "::error file=${i:2},title=Unwanted file detected::${i:2}";
+              ERROR=1;
             elif [[ "$(basename -- "$i")" =~ .*pain_au_chocolat.* ]]; then
               echo "::error file=${i:2},title=Unwanted file detected::${i:2}";
+              ERROR=1;
             elif [[ "$(basename -- "$i")" =~ .*(.o|.a|.so|.gcno|.gcda|.gcov)$ ]]; then
               echo "::error file=${i:2},title=Unwanted file detected::${i:2}";
+              ERROR=1;
             fi
           done
           
@@ -44,9 +49,18 @@ jobs:
               for j in $(find -path "$i/*" -name \* -type f);
               do
                 echo "::error file=${j:2},title=Unwanted file detected::${j:2}";
+                ERROR=1;
               done
             fi
           done
+          
+          if [[ ERROR -eq 1 ]]; then
+            echo "::error title=Checks if the repository is clean and void of any unwanted files (temp files, binary files, etc.)";
+            exit 1;
+          else
+            echo "::notice title=Checks if the repository is clean and void of any unwanted files (temp files, binary files, etc.)::Repository clean";
+          fi
+            
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
