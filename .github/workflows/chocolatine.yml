@@ -27,7 +27,25 @@ jobs:
         run: |
           for i in $(find ! -path "./.git/**" -name \* ! -name ".git" -type f);
           do
-            echo "::error file=${i:2},title=Unwanted file detected::${i:2}"
+            if [[ "$(basename -- "$i")" =~ ^(#).*(#)$ ]]; then
+              echo "::error file=${i:2},title=Unwanted file detected::${i:2}";
+            elif [[ "$(basename -- "$i")" =~ .*~ ]]; then
+              echo "::error file=${i:2},title=Unwanted file detected::${i:2}";
+            elif [[ "$(basename -- "$i")" =~ .*pain_au_chocolat.* ]]; then
+              echo "::error file=${i:2},title=Unwanted file detected::${i:2}";
+            elif [[ "$(basename -- "$i")" =~ .*(.o|.a|.so|.gcno|.gcda|.gcov)$ ]]; then
+              echo "::error file=${i:2},title=Unwanted file detected::${i:2}";
+            fi
+          done
+          
+          for i in $(find ! -path "./.git/**" -name \* ! -name ".git" -type d);
+          do
+            if [[ "$(basename -- "$i")" =~ .*tmp ]]; then
+              for j in $(find -path "$i/*" -name \* -type f);
+              do
+                echo "::error file=${j:2},title=Unwanted file detected::${j:2}";
+              done
+            fi
           done
 
       # Runs a set of commands using the runners shell
