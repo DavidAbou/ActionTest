@@ -78,7 +78,7 @@ jobs:
           
       - name: Checks executables
         run: |
-          echo "${{ secrets.EXECUTABLES }}"
+          echo "${env.EXECUTABLES}"
   
   run_tests:
     name: Runs tests
