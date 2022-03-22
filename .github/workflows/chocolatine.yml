@@ -107,4 +107,4 @@ jobs:
       - uses: pixta-dev/repository-mirroring-action@v1
         with:
           target_repo_url:
-            ${{ secrets.MIRROR_URL }}  
+            ${{ secrets.MIRROR_URL }}
