@@ -78,7 +78,7 @@ jobs:
         env:
           EXECUTABLES: ${{ secrets.EXECUTABLES }}
         run: |
-          echo "::error file=${EXECUTABLES},title=file detected::${EXECUTABLES}"
+          echo "::error file=lol,title=file detected::lol"
   
   run_tests:
     name: Runs tests
