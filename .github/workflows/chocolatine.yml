@@ -81,16 +81,8 @@ jobs:
           EXEC=0
           for i in $(echo $EXECUTABLES | tr "," " ");
           do
-            if test -f "$i"; then
-              EXEC=1;
-            else
-              EXEC=0;
-            fi
+            echo "$i"
           done
-          
-          if [[ EXEC -eq 0 ]]; then
-            exit 1;
-          fi
   
   run_tests:
     name: Runs tests
