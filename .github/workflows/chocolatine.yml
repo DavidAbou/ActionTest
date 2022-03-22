@@ -76,12 +76,12 @@ jobs:
           
       - name: Checks executables
         run: |
-          if [ "$EXEC" == "Makefile" ]; then
+          if [ "$EXECUTABLES" == "Makefile" ]; then
             echo "ok"
           fi  
         env:  
-          EXEC: ${{ secrets.EXECUTABLES }}
-#
+          EXECUTABLES: ${{ secrets.EXECUTABLES }}
+
   run_tests:
     name: Runs tests
     runs-on: ubuntu-latest
