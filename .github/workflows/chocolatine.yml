@@ -78,6 +78,7 @@ jobs:
         run: |
           echo "${{ secrets.EXECUTABLES }}"
   
+  #lol
   run_tests:
     name: Runs tests
     runs-on: ubuntu-latest
