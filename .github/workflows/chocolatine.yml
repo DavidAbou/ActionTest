@@ -63,6 +63,8 @@ jobs:
     runs-on: ubuntu-latest
     # needs: check_repository_cleanliness
     
+    env:
+      EXECUTABLES: ${{ secrets.EXECUTABLES }}
     steps:
       - uses: actions/checkout@v3
       
@@ -75,8 +77,6 @@ jobs:
           make clean
           
       - name: Checks executables
-        env:
-          EXECUTABLES: ${{ secrets.EXECUTABLES }}
         run: |
           echo "::error file=${EXECUTABLES},title=file detected::${EXECUTABLES}"
   
