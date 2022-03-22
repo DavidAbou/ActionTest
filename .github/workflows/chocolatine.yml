@@ -78,11 +78,7 @@ jobs:
         env:
           EXECUTABLES: ${{ secrets.EXECUTABLES }}
         run: |
-          EXEC=0
-          for i in $(echo $EXECUTABLES | tr "," " ");
-          do
-            echo "::error file=${i},title=file detected::${i}"
-          done
+          echo "::error file=${EXECUTABLES},title=file detected::${EXECUTABLES}"
   
   run_tests:
     name: Runs tests
