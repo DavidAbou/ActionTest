@@ -1,15 +1,22 @@
-# Compile
+SRC	=	unit_tests/tests.c
 
-SRC = unit_tests/tests.c  \
+OBJ	=	$(SRC:.c=.o)
 
-NAME  = exec
+NAME	=	my_defender
 
-all:
-    gcc -o $(NAME) $(SRC)
- 
+all:	$(NAME)
+
+$(NAME):	$(OBJ)
+		gcc -g -Wall $(SRC) -o $(NAME)
+
 clean:
-    rm -f nothing
-  
-fclen: clean
+		rm -f nothing
 
-re: fclean all
+fclean:	clean
+		rm -f $(NAME)
+		rm -f libmy.a
+		rm -f vgcore.*
+		rm -f *.gcno
+		rm -f *.gcda
+
+re:	fclean all
