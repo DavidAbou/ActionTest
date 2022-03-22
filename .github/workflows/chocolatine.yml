@@ -15,7 +15,7 @@ jobs:
   # This workflow contains a single job called "build"
   check_repository_cleanliness:
     # The type of runner that the job will run on
-    name: Checks if the repository is clean and void of any unwanted files
+    name: Checks if the repository is clean and void of any unwanted files (temp files, binary files, etc.)
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
