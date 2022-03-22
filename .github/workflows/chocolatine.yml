@@ -75,12 +75,8 @@ jobs:
           make clean
           
       - name: Checks executables
-        with:
-          EXECUTABLES: ${{ secrets.EXECUTABLES }}
-        env:
-          EXECUTABLES: ${{ secrets.EXECUTABLES }}
         run: |
-          echo $EXECUTABLES
+          echo "${{ secrets.EXECUTABLES }}"
   
   run_tests:
     name: Runs tests
