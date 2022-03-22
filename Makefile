@@ -8,6 +8,8 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 		gcc -g -Wall $(SRC) -o $(NAME)
+		
+tests_run:	all
 
 clean:
 		rm -f nothing
