@@ -59,7 +59,7 @@ jobs:
           fi
 
   check_program_compilation:
-    name: Checks if the program compile with Makefile
+    name: Checks if the program compiles correctly
     runs-on: ubuntu-latest
     
     steps:
