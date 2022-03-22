@@ -76,19 +76,18 @@ jobs:
           
       - name: Checks executables
         run: |
-          EXEC=0
           for i in $(echo $EXECUTABLES | tr "," " ");
           do
             if test -f "$i"; then
-              EXEC=1;
+              if [[ "$(stat -c %a "$i")" =~ ^(5|7).* ]]; then
+                echo "$i have permissions";
+              else
+                exit 1;
+              fi     
             else
-              EXEC=0;
+              exit 1;
             fi
           done
-          
-          if [[ EXEC -eq 0 ]]; then
-            exit 1;
-          fi
         env:  
           EXECUTABLES: ${{ secrets.EXECUTABLES }}
 
