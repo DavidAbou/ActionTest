@@ -76,7 +76,9 @@ jobs:
           
       - name: Checks executables
         run: |
-          echo $EXEC
+          if [ "$EXEC" -eq "Makefile" ]; then
+            echo "ok"
+          fi  
         env:  
           EXEC: ${{ secrets.EXECUTABLES }}
 
