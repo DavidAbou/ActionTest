@@ -75,11 +75,11 @@ jobs:
           make clean
           
       - name: Checks executables
-        if: ${{ secrets.EXECUTABLES == 'Makefile,Dockerfile' }}
         run: |
-          echo "ok"
-  
-  #lol
+          echo $EXEC
+        env:  
+          EXEC: ${{ secrets.EXECUTABLES }}
+
   run_tests:
     name: Runs tests
     runs-on: ubuntu-latest
