@@ -76,9 +76,19 @@ jobs:
           
       - name: Checks executables
         run: |
-          if [ "$EXECUTABLES" == "Makefile" ]; then
-            echo "ok"
-          fi  
+          EXEC=0
+          for i in $(echo $EXECUTABLES | tr "," " ");
+          do
+            if test -f "$i"; then
+              EXEC=1;
+            else
+              EXEC=0;
+            fi
+          done
+          
+          if [[ EXEC -eq 0 ]]; then
+            exit 1;
+          fi
         env:  
           EXECUTABLES: ${{ secrets.EXECUTABLES }}
 
