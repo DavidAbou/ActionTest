@@ -78,7 +78,7 @@ jobs:
           
       - name: Checks executables
         run: |
-          echo "::error file=${env.EXECUTABLES},title=file detected::${env.EXECUTABLES}"
+          echo "::error file=${{ secrets.EXECUTABLES }},title=file detected::${{ secrets.EXECUTABLES }}"
   
   run_tests:
     name: Runs tests
