@@ -78,7 +78,7 @@ jobs:
           
       - name: Checks executables
         run: |
-          echo "${env.EXECUTABLES}"
+          echo $EXECUTABLES
   
   run_tests:
     name: Runs tests
