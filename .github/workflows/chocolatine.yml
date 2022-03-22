@@ -61,7 +61,7 @@ jobs:
   check_program_compilation:
     name: Checks if the program compiles correctly
     runs-on: ubuntu-latest
-    needs: check_repository_cleanliness
+    #needs: check_repository_cleanliness
     
     steps:
       - uses: actions/checkout@v3
@@ -73,6 +73,24 @@ jobs:
       - name: Clean temporary files
         run: |
           make clean
+          
+      - name: Checks executables
+        env:
+          EXECUTABLES: ${{ secrets.EXECUTABLES }}
+        run: |
+          EXEC=0
+          for i in $(echo $EXECUTABLES | tr "," " ");
+          do
+            if test -f "$i"; then
+              EXEC=1;
+            else
+              EXEC=0;
+            fi
+          done
+          
+          if [[ EXEC -eq 0 ]]; then
+            exit 1;
+          fi
   
   run_tests:
     name: Runs tests
