@@ -76,7 +76,7 @@ jobs:
           
       - name: Checks executables
         env:
-          EXECUTABLES: ${{ secrets.EXECUTABLES }}
+          EXECUTABLES: mona
         run: |
           echo $EXECUTABLES
   
