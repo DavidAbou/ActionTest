@@ -4,9 +4,7 @@ SRC = unit_tests/tests.c  \
 
 NAME  = exec
 
-all:  $(NAME)
-
-$(NAME):
+all:
   gcc -o $(NAME) $(SRC)
  
 clean:
