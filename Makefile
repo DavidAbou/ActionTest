@@ -5,10 +5,10 @@ SRC = unit_tests/tests.c  \
 NAME  = exec
 
 all:
-  gcc -o $(NAME) $(SRC)
+    gcc -o $(NAME) $(SRC)
  
 clean:
-  rm -f nothing
+    rm -f nothing
   
 fclen: clean
 
