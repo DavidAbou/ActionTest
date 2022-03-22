@@ -76,7 +76,7 @@ jobs:
           
       - name: Checks executables
         run: |
-          if [ "$EXEC" -eq "Makefile" ]; then
+          if [ "$EXEC" == "Makefile" ]; then
             echo "ok"
           fi  
         env:  
