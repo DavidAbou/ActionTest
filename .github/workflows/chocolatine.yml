@@ -75,7 +75,7 @@ jobs:
           make clean
           
       - name: Checks executables
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ secrets.EXECUTABLES == 'Makefile,Dockerfile' }}
         run: |
           echo "ok"
   
