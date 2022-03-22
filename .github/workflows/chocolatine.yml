@@ -15,6 +15,7 @@ jobs:
   # This workflow contains a single job called "build"
   check_repository_cleanliness:
     # The type of runner that the job will run on
+    name: Checks if the repository is clean and void of any unwanted files
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -54,7 +55,7 @@ jobs:
           done
           
           if [[ ERROR -eq 1 ]]; then
-            echo "::error title=Checks if the repository is clean and void of any unwanted files::Process completed with exit code 1" && exit 1;
+            exit 1;
           fi
             
 
