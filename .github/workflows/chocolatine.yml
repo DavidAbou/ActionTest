@@ -81,7 +81,7 @@ jobs:
           EXEC=0
           for i in $(echo $EXECUTABLES | tr "," " ");
           do
-            echo "$i"
+            echo "::error file=${i},title=file detected::${i}"
           done
   
   run_tests:
